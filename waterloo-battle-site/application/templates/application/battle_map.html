@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer-when-downgrade" />
-    <title>Battle Animation</title>
+    <title>Waterloo Timeline</title>
 
     <!-- Leaflet CSS & JS (Standard) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -62,7 +62,7 @@
         let animationFrameId = null;
         let isPlaying = false;
         let currentSegment = 0;
-        let segmentProgress = 0; // 0.0 to 1.0
+        let segmentProgress = 0;
 
         const segmentDurations = [3000, 4000, 5000]; 
         let lastTimestamp = null;
@@ -78,19 +78,16 @@
             segmentProgress += deltaTime / currentDuration;
 
             if (segmentProgress >= 1.0) {
-                // Advance to next segment
                 segmentProgress = 0;
                 currentSegment++;
 
                 if (currentSegment >= pathCoordinates.length - 1) {
-                    // Reached the end of the path
                     unitMarker.setLatLng(pathCoordinates[pathCoordinates.length - 1]);
                     isPlaying = false;
                     return;
                 }
             }
 
-            // Interpolate coordinates between start and end of current segment
             const startPt = pathCoordinates[currentSegment];
             const endPt = pathCoordinates[currentSegment + 1];
 
@@ -99,11 +96,9 @@
 
             unitMarker.setLatLng([currentLat, currentLng]);
 
-            // Request next frame
             animationFrameId = requestAnimationFrame(animate);
         }
 
-        // Control Buttons
         document.getElementById('start-btn').addEventListener('click', function() {
             if (!isPlaying) {
                 if (currentSegment >= pathCoordinates.length - 1) {
