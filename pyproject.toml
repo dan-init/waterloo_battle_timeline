@@ -6,8 +6,10 @@ readme = "README.md"
 authors = [
     { name = "dan", email = "dan__init__@outlook.com" }
 ]
-requires-python = ">=3.11"
-dependencies = []
+requires-python = ">=3.12"
+dependencies = [
+    "django>=6.1.1",
+]
 
 [project.scripts]
 waterloo-battle-site = "waterloo_battle_site:main"
