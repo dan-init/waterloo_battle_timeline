@@ -1,8 +1,20 @@
 from django.db import models
 
+class Rank(models.model):
+    rank_title = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.rank_title
+    
+
 class Personnel(models.Model):
     name = models.CharField(max_length=25) 
-    rank = models.CharField(max_length=25)
+    rank = models.ForeignKey(
+        Rank, 
+        on_delete=models.SET_NULL, 
+        null=True,
+        blank=True,
+        )
 
     def __str__(self):
         return f"{self.name} {self.rank}"
