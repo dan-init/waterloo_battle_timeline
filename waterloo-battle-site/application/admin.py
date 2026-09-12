@@ -1,7 +1,7 @@
 from django.contrib import admin
 import application.models as models
 
-admin.register(models.Rank)
+admin.site.register(models.Rank)
 admin.site.register(models.Personnel)
 admin.site.register(models.Army)
 admin.site.register(models.Corp)
