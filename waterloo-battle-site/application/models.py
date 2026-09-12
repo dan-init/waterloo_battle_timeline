@@ -1,6 +1,6 @@
 from django.db import models
 
-class Rank(models.model):
+class Rank(models.Model):
     rank_title = models.CharField(max_length=25)
 
     def __str__(self):
