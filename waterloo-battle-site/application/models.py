@@ -17,7 +17,7 @@ class Personnel(models.Model):
         )
 
     def __str__(self):
-        return f"{self.name} {self.rank}"
+        return f"{self.name}-{self.rank}"
 
 class Army(models.Model):
     name = models.CharField(max_length=10)
@@ -29,6 +29,9 @@ class Army(models.Model):
         null=True,
         blank=True,
     )
+
+    def __str__(self):
+        return self.name
 
 class Corp(models.Model):
     affiliated_army = models.ForeignKey(
@@ -45,6 +48,9 @@ class Corp(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return self.name
+
 class Division(models.Model):
     affiliated_corp = models.ForeignKey(
         Corp, 
@@ -60,6 +66,9 @@ class Division(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return self.name
+    
 class Bridade(models.Model):
     affilated_division = models.ForeignKey(
         Division, 
@@ -75,6 +84,9 @@ class Bridade(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return self.name
+    
 class Regiment(models.Model):
     affilated_brigade = models.ForeignKey(
         Bridade, 
@@ -89,6 +101,9 @@ class Regiment(models.Model):
         null=True,
         blank=True,
     )
+
+    def __str__(self):
+        return self.name
 
 class Battalion(models.Model):
     affliated_regiment = models.ForeignKey(
@@ -105,6 +120,9 @@ class Battalion(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return self.name
+    
 class Company(models.Model):
     affliated_battalion = models.ForeignKey(
         Battalion, 
@@ -119,3 +137,6 @@ class Company(models.Model):
         null=True,
         blank=True,
     )
+
+    def __str__(self):
+        return self.name
